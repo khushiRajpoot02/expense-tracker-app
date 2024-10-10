@@ -81,3 +81,12 @@ To learn more about React Native, take a look at the following resources:
 
 
 
+
+
+# I have to ad delete expenses, add expenses, edit expenses
+# what to do in this case ? 
+# suppose I have to 
+
+
+# I have to create slices, reducers and based on that I will perform an action
+# so let's discuss this here : 

@@ -6,13 +6,12 @@ import {getDateMinusDays} from '../utils/data';
 function RecentExpense() {
   const expenseCtx = useContext(GlobalStateContext);
 
-
   const recentExpenses = expenseCtx.expenses.filter(expense => {
-    const toDay =  new Date();
+    const toDay = new Date();
     const date7DaysAgo = getDateMinusDays(toDay, 7);
-       const expenseDate = new Date(expense.date); // Convert to Date object if necessary
+    const expenseDate = new Date(expense.date); // Convert to Date object if necessary
 
-    return expenseDate > date7DaysAgo; 
+    return expenseDate > date7DaysAgo;
   });
   return (
     <View>

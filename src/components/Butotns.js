@@ -5,7 +5,7 @@ function Buttons({children, mode, onPress, style}) {
 
   return (
     <View style = {style}>
-      <Pressable    onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
+      <Pressable onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
         <View style={[styles.button, mode === 'flat' && styles.flat]}>
           <Text style={styles.buttonText}>{children}</Text>
         </View>

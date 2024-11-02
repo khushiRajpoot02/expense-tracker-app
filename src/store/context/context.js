@@ -11,13 +11,13 @@ const DUMMY_EXPENSE = [
     id: 'e112',
     description: 'New Expense within 7 days',
     amount: 25.99,
-    date: new Date('2024-10-08'), // Expense within the last 7 days
+    date: new Date('2024-10-08'),
   },
   {
     id: 'e11255',
     description: 'New Expense within 7 days',
     amount: 25.99,
-    date: new Date('2024-10-10'), // Expense within the last 7 days
+    date: new Date('2024-10-10'), 
   },
   {
     id: 'e201',
@@ -99,7 +99,7 @@ const globalStateReducer = (state, action) => {
       return [...state, {...action.payload, id: id}];
 
     case 'DELETE':
-      console.log('deleye', action.payload.expenseItemId);
+      console.log('delete', action.payload.expenseItemId);
       return state.filter(
         expense => expense.id !== action.payload.expenseItemId,
       );
@@ -166,3 +166,6 @@ export const GlobalStateProvider = ({children}) => {
     </GlobalStateContext.Provider>
   );
 };
+
+
+

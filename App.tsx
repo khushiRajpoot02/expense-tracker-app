@@ -16,16 +16,13 @@ import DynamicIcon from './src/components/DynamicIcon';
 import ManageExpense from './src/screens/ManageExpenseScreen';
 import {GlobalStyles} from './src/constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
-  import {GlobalStateProvider} from './src/store/context/context';
+import {GlobalStateProvider} from './src/store/context/context';
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
 
   function ExpenseOverView() {
-// @ts-ignore
-
-
-
+    // @ts-ignore
 
     return (
       <Tab.Navigator
@@ -85,30 +82,47 @@ function App(): React.JSX.Element {
   }
   return (
     <GlobalStateProvider>
-    <NavigationContainer>
-    
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
-          headerTintColor: 'white',
-          headerTitleAlign: 'center',
-        }}>
-        <Stack.Screen
-          name="ExpenseOverView"
-          component={ExpenseOverView}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ManageExpense"
-          component={ManageExpense}
-          options={{
-            presentation: 'modal',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+          }}>
+          <Stack.Screen
+            name="ExpenseOverView"
+            component={ExpenseOverView}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ManageExpense"
+            component={ManageExpense}
+            options={{
+              presentation: 'modal',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </GlobalStateProvider>
   );
 }
 
 export default App;
+
+
+// practice coding questions in react-native so that if they tell me to do any program, I should be able to do this(Mainly focus on js part for coding using
+// let's practice these also
+
+
+// map, reducer, filter, indexOf, FlstList 
+// redux
+// Navigation
+// Hooks (useState, useMemo, Dynamic form, useeffect and so on)
+// I have 3 days left 
+// make everyday worthit so that I will not be having regrets
+// Jai mata Di 
+// let's work on thissssss
+
+
+// itnaa sara aaj kr leti hu to accha khasa practice ho jayegii
+// ok? yes let's learn and work for this

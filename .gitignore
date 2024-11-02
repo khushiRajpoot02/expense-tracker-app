@@ -72,3 +72,56 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+# Logs
+*.log
+*.log.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Testing
+coverage/
+
+# React Native specific
+*.iml
+*.hmap
+*.lock
+*.tlog
+*.xcuserstate
+android/.gradle
+android/app/build/
+android/app/release/
+android/app/proguard/
+ios/Pods/
+ios/Podfile.lock
+ios/build/
+ios/DerivedData/
+android/.idea/
+
+# Android specific
+android/local.properties
+android/app/src/debug/
+android/app/src/release/
+android/app/src/androidTest/
+
+# iOS specific
+ios/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Build artifacts
+dist/
+*.swp
+
+# Environment variables and sensitive files
+.env
+.env.*

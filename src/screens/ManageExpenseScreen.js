@@ -73,26 +73,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-// with focus kaam karte jaaa, ho jayegaaa
-// vibe aa rhi hai ki ho jayegaaa
-// do your best , and then will see kyaa hotaa hai
-// do not waste your time and energy
-// let's crack this interview and get 65k to 70k inhand salary
-// form submission
-//aaj mai itani baate nahi krungi will publish my app today so that It can be published till monday or tuesday
-// mata rani please help karnaa
-// muje job isse aachi mil jaaye
-
-// data persist karnaa sikho
-// so I have to cover all these points and work for that
-// let's do this
-// after completing react native course I have to make expense app as my major project and practice everyday concepts and DSa
-// Involve in community and and showcase your skills
-// let's build this
-// Jai Mata Di
-
-// I have to publish this app today itself
-// before going to bed
-// complete this ftaa faaatt
-// yeaaaaaaaahhhhhh

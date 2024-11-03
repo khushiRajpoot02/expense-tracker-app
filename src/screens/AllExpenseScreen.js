@@ -5,12 +5,7 @@ import { GlobalStateContext } from '../store/context/context';
 function AllExpense() {
   console.log('all expense');
 
-
-
-
 const expensesCtx = useContext(GlobalStateContext);
-
-
 
   return (
     <View>

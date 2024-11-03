@@ -37,12 +37,3 @@ const styles = StyleSheet.create({
   },
 });
 export default Input;
-
-// I have to complete this in 1st half
-// left with 1.5hrs here
-// let's continue this
-
-// now it is a time to pblish your work and yourself to the industry
-// let's start working on it
-// let's do this
-// work hard for archieving youe things

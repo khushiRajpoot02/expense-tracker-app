@@ -7,9 +7,9 @@ function ExpenseForm({onCancel, expenseItemId, onsubmit, defaultvalue}) {
   const isEdited = !!expenseItemId; // true or false
   // console.log("defaultValue in Expense Form", defaultvalue.forEach((item)=>console.log(item)));
   const [inputValues, setInputValues] = useState({
-    amount:  defaultvalue ?  defaultvalue.amount.toString() :   '',
-    date:defaultvalue ? defaultvalue?.date.toISOString().slice(0, 10):   '',
-    description: defaultvalue ? defaultvalue?.description:   '',
+    amount: defaultvalue ? defaultvalue.amount.toString() : '',
+    date: defaultvalue ? defaultvalue?.date.toISOString().slice(0, 10) : '',
+    description: defaultvalue ? defaultvalue?.description : '',
   });
 
   function inputchange(inputIdentifier, enteredValue) {
@@ -23,22 +23,21 @@ function ExpenseForm({onCancel, expenseItemId, onsubmit, defaultvalue}) {
   }
 
   function submitHandler() {
- expensedata = {
-          description: inputValues.description,
-          amount: +inputValues.amount,
-          date: new Date(inputValues.date),
-        }
-const isValidAmount = !isNaN(expensedata.amount) && expensedata.amount > 0;
-const isValiddate = expensedata.date.toString() !== "Invalid Date" ;
- const isValidDescription =  expensedata.description.trim().length > 0;
-console.log("isValidDescription", expensedata.description)
-if(!isValidAmount || !isValiddate || !isValidDescription){
-  Alert.alert('Invalid Input', 'Please check your input value');
-  return;
-}
+    expensedata = {
+      description: inputValues.description,
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+    };
+    const isValidAmount = !isNaN(expensedata.amount) && expensedata.amount > 0;
+    const isValiddate = expensedata.date.toString() !== 'Invalid Date';
+    const isValidDescription = expensedata.description.trim().length > 0;
+    console.log('isValidDescription', expensedata.description);
+    if (!isValidAmount || !isValiddate || !isValidDescription) {
+      Alert.alert('Invalid Input', 'Please check your input value');
+      return;
+    }
 
     onsubmit(expensedata);
-
   }
   return (
     <View style={styles.container}>

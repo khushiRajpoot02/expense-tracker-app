@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.expensetracker"
+    namespace "com.notjust.bachathata"
     defaultConfig {
-        applicationId "com.expensetracker"
+        applicationId "com.notjust.bachathata"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

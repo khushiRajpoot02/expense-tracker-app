@@ -1,4 +1,4 @@
-package com.expensetracker
+package com.notjust.bachathata
 
 import android.app.Application
 import com.facebook.react.PackageList

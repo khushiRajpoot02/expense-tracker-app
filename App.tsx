@@ -17,9 +17,51 @@ import ManageExpense from './src/screens/ManageExpenseScreen';
 import {GlobalStyles} from './src/constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {GlobalStateProvider} from './src/store/context/context';
+import TestScreen from './src/screens/TestScreen';
+
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
+
+  const users = [
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    {name: 'John Doe', age: 28, email: 'john@example.com'},
+    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
+    
+  ];
 
   function ExpenseOverView() {
     // @ts-ignore
@@ -88,7 +130,10 @@ function App(): React.JSX.Element {
             headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
             headerTintColor: 'white',
             headerTitleAlign: 'center',
-          }}>
+          }}
+          // initialRouteName="TestScreen"
+          
+          >
           <Stack.Screen
             name="ExpenseOverView"
             component={ExpenseOverView}
@@ -101,6 +146,11 @@ function App(): React.JSX.Element {
               presentation: 'modal',
             }}
           />
+{/* 
+          <Stack.Screen name="TestScreen" component={TestScreen}
+          
+          initialParams={users}
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </GlobalStateProvider>
@@ -109,20 +159,17 @@ function App(): React.JSX.Element {
 
 export default App;
 
-
 // practice coding questions in react-native so that if they tell me to do any program, I should be able to do this(Mainly focus on js part for coding using
 // let's practice these also
 
-
-// map, reducer, filter, indexOf, FlstList 
+// map, reducer, filter, indexOf, FlstList
 // redux
 // Navigation
 // Hooks (useState, useMemo, Dynamic form, useeffect and so on)
-// I have 3 days left 
+// I have 3 days left
 // make everyday worthit so that I will not be having regrets
-// Jai mata Di 
+// Jai mata Di
 // let's work on thissssss
-
 
 // itnaa sara aaj kr leti hu to accha khasa practice ho jayegii
 // ok? yes let's learn and work for this

@@ -4,7 +4,7 @@ import {GlobalStyles} from '../constants/Colors';
 import DynamicIcon from '../components/DynamicIcon';
 import {GlobalStateContext} from '../store/context/context';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm';
-
+import {storeExpense} from '../utils/http'
 function ManageExpense({route, navigation}) {
   const expenseCtx = useContext(GlobalStateContext);
   const expenseItemId = route.params?.EditedexpenseId;
@@ -28,11 +28,12 @@ function ManageExpense({route, navigation}) {
   function cancel() {
     navigation.goBack();
   }
-  function confirmHandler(expensedata) {
+   async function confirmHandler(expensedata) {
     if (isEdited) {
       expenseCtx.editExpense(expenseItemId, expensedata);
     } else {
-      expenseCtx.addExpenses(expensedata);
+    const id = await  storeExpense(expensedata);
+      expenseCtx.addExpenses({...expensedata, id});
     }
     navigation.goBack();
   }
@@ -59,6 +60,7 @@ function ManageExpense({route, navigation}) {
   );
 }
 export default ManageExpense;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -73,3 +75,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+

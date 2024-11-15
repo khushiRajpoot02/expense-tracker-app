@@ -9,6 +9,7 @@ function RecentExpense() {
   useEffect(() => {
     async function getExpense() {
       const expense = await fetchExpense();
+      console.log("expense", expense);
       expenseCtx.setExpense(expense);
     }
     getExpense();
@@ -27,12 +28,4 @@ function RecentExpense() {
 }
 export default RecentExpense;
 
-// here I have to work for setExpenses
-// let's work on it
-// how to do this?
-// I can use fetch data from firebase, but i have used stak navigation so here fetching data inside firebase will not work
-// so after adding data from frontend I will use that data only from globalContext
-// let's work on it
-// jldi se ispe kaam kr le and start practicing DSA and react native code + theory
-// meditate everyday
-// do not waste time at any cost
+

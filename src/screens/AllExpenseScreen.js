@@ -3,13 +3,11 @@ import ExpenseOutput from '../components/ExpensesOutput/ExpenseOutput';
 import { useContext } from 'react';
 import { GlobalStateContext } from '../store/context/context';
 function AllExpense() {
-  console.log('all expense');
-
+console.log('all expense');
 const expensesCtx = useContext(GlobalStateContext);
-
   return (
     <View>
-      <ExpenseOutput   expense={expensesCtx.expenses} expensePeriod="Total" />
+      <ExpenseOutput expense={expensesCtx.expenses} expensePeriod="Total" />
     </View>
   );
 }

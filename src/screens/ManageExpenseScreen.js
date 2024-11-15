@@ -4,7 +4,7 @@ import {GlobalStyles} from '../constants/Colors';
 import DynamicIcon from '../components/DynamicIcon';
 import {GlobalStateContext} from '../store/context/context';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm';
-import {storeExpense} from '../utils/http'
+import {storeExpense, updateData, deleteData} from '../utils/http';
 function ManageExpense({route, navigation}) {
   const expenseCtx = useContext(GlobalStateContext);
   const expenseItemId = route.params?.EditedexpenseId;
@@ -19,20 +19,22 @@ function ManageExpense({route, navigation}) {
     });
   }, [navigation, isEdited]);
 
-  function deleteExpense() {
-    expenseCtx.deleteExpense({
-      expenseItemId,
-    });
+  async function deleteExpense() {
+    await deleteData(expenseItemId);
+    expenseCtx.deleteExpense(expenseItemId);
     navigation.goBack();
   }
+
   function cancel() {
     navigation.goBack();
   }
-   async function confirmHandler(expensedata) {
+  async function confirmHandler(expensedata) {
     if (isEdited) {
       expenseCtx.editExpense(expenseItemId, expensedata);
+    await updateData(expenseItemId, expensedata);
+    // console.log("res", res)
     } else {
-    const id = await  storeExpense(expensedata);
+      const id = await storeExpense(expensedata);
       expenseCtx.addExpenses({...expensedata, id});
     }
     navigation.goBack();
@@ -75,4 +77,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-

@@ -1,73 +1,5 @@
 import {createContext, useReducer, useContext} from 'react';
 
-// const DUMMY_EXPENSE = [
-//   {
-//     id: 'e200',
-//     description: 'Pair of shoes',
-//     amount: 59.99,
-//     date: new Date('2024-5-21'),
-//   },
-//   {
-//     id: 'e112',
-//     description: 'New Expense within 7 days',
-//     amount: 25.99,
-//     date: new Date('2024-10-08'),
-//   },
-//   {
-//     id: 'e11255',
-//     description: 'New Expense within 7 days',
-//     amount: 25.99,
-//     date: new Date('2024-10-10'),
-//   },
-//   {
-//     id: 'e201',
-//     description: 'Pair of Slipper',
-//     amount: 59.99,
-//     date: new Date('2024-5-22'),
-//   },
-//   {
-//     id: 'e8',
-//     description: 'Pair of mcn',
-//     amount: 59.99,
-//     date: new Date('2024-5-21'),
-//   },
-//   {
-//     id: 'e2',
-//     description: 'SUn glases',
-//     amount: 78.99,
-//     date: new Date('2024-7-22'),
-//   },
-//   {
-//     id: 'e3',
-//     description: 'Slipper',
-//     amount: 60.0,
-//     date: new Date('2024-8-24'),
-//   },
-//   {
-//     id: 'e4',
-//     description: 'Shirts',
-//     amount: 100.99,
-//     date: new Date('2024-9-23'),
-//   },
-//   {
-//     id: 'e9',
-//     description: 'Coffee',
-//     amount: 4.99,
-//     date: new Date('2024-9-22'),
-//   },
-//   {
-//     id: 'e10',
-//     description: 'Movie ticket',
-//     amount: 12.0,
-//     date: new Date('2024-9-21'),
-//   },
-//   {
-//     id: 'e5',
-//     description: 'Groceries',
-//     amount: 45.5,
-//     date: new Date('2024-9-25'),
-//   },
-// ];
 
 export const GlobalStateContext = createContext({
   expenses: [],
@@ -77,20 +9,6 @@ export const GlobalStateContext = createContext({
   editExpense: (id, {description, amount, date}) => {},
 });
 
-// // custom hook
-// export const useGlobalState = () => {
-//   // created global hook for updating data globally
-
-//   useContext(GlobalStateContext);
-// };
-// initial state
-
-// const expenseState = {
-//   expenses: [],
-//   addExpenses: ({description, amount, date}) => {},
-//   deleteExpense: d => {},
-//   editExpense: (id, {description, amount, date}) => {},
-// };
 
 // it will return the updated state
 const globalStateReducer = (state, action) => {
@@ -170,3 +88,8 @@ export const GlobalStateProvider = ({children}) => {
     </GlobalStateContext.Provider>
   );
 };
+
+
+// frame mail for react.js and react native experinece
+// use AI extension to cold email and ask for refral from today itself
+// Complete this project ASAP

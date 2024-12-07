@@ -8,9 +8,21 @@ export async function storeExpense(expenseData) {
   return id;
 }
 
-export async function fetchExpense() {
-  const response = await axios.get(url + '/expenses.json');
-  console.log("responseData from firebas", JSON.stringify(response));
+export async function fetchExpense(CREDENTIAL) {
+  console.log("CREDENTIAL", CREDENTIAL)
+  const response = await axios.get(url + "/expenses.json",
+    {
+      params : {
+         orderBy: '"userId"',
+    equalTo: `"${CREDENTIAL}"`
+      }
+    }
+    
+    ).then((expenses)=>{
+    // console.log("hsvdcvhdjsvcdvcdhchdvhc",expenses.data);
+    return expenses
+  }).catch((err)=>console.log("error", err));
+  // console.log("responseData from firebas", JSON.stringify(response));
   const expenses = [];
 
   for (const key in response.data) {
@@ -19,10 +31,11 @@ export async function fetchExpense() {
       amount: response.data[key].amount,
       date: new Date(response.data[key].date),
       description: response.data[key].description,
+      
     };
     expenses.push(expenseObj);
   }
-  console.log('response', response);
+  // console.log('response', response);
   return expenses;
 }
 export function updateData(id, expenseData) {
@@ -30,12 +43,7 @@ export function updateData(id, expenseData) {
 }
 
 export function deleteData(id) {
-  return axios.delete(url + `/expenses/${id}.json`);
+  const response = axios.delete(url + `/expenses/${id}.json`);
+  // console.log("response",response)
+  return response
 }
-
-// create plan for react and react native which are the things we generally do in any organization
-// so basically I have to prepare that things only and rest will be handdled
-// Also I have to prepare coding (DSA)
-// let's work on this
-// jai mata Di please help me to do this
-// iss project ko intersting bnaa and also gain confidence by doing things my own

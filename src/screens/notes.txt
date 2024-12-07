@@ -1,0 +1,119 @@
+worker	 	 	 	 	 
+WORKER_ID	FIRST_NAME	LAST_NAME	SALARY	JOINING_DATE	DEPARTMENT
+1	NIHARIKA	ARORA	20000	2/25/2013	HR
+2	AYUSHI	GURONDIA	5000	2/10/2015	ADMIN
+3	PRIYANSHA	CHOUKSEY	25000	5/16/2014	HR
+4	APARNA	DESHPANDE	8000	12/20/2016	ADMIN
+5	SHAFALI	JAIN	21000	8/29/2015	ADMIN
+6	SUCHITA	JOSHI	20000	2/12/2017	ACCOUNT
+7	SHUBHI	MISHRA	15000	3/23/2018	ADMIN
+8	DEVYANI	PATIDAR	18000	5/2/2014	ACCOUNT
+
+Forcing key = WORKER_TITLE
+ 
+Unknown User left the chat.
+Unknown User left the chat.
+Last read
+  designation   WORKER_REF_ID WORKER_TITLE ... by Dhanashree Shetty (Unverified)
+Dhanashree Shetty (Unverified)
+15:16
+ 
+designation	 
+WORKER_REF_ID	WORKER_TITLE	AFFECTED_FROM
+1	Manager	2/20/2016
+2	Executive	6/11/2016
+8	Executive	6/11/2016
+5	Manager	6/11/2016
+4	Asst. Manager	6/11/2016
+7	Executive	6/11/2016
+6	Lead	6/11/2016
+3	Lead	6/11/2016
+ 
+has context menu
+
+/// 
+Get the details of worker who are also managers
+
+
+
+
+
+SELECT *  FROM worker
+
+RIGHT JOIN designation on worker. WORKER_ID = designation. WORKER_REF_ID
+
+WHERE designation. WORKER_TITLE = "manager";
+
+
+// 1 Manager -> 
+
+
+
+
+
+
+
+
+
+Write a program to match brackets in a given string. Consider all types of brackets '(', '[' and '{'. Return true if matching else return false
+ 
+1. hello()[]
+2. (())[] true
+
+3. )(
+Return true
+// st.push()
+//  stack contains = ))]
+
+
+
+int      OpeningBr  = 0; int closings = 0;
+
+for(int i = 0 ; I < str.lengtgh(); i++){
+
+if (str.charAt(i) === ')' || str.charAt(i) === '}' || str.charAt(i) === ']'){
+
+  st.push(str.charAt(i));
+
+}
+
+
+
+}
+
+
+
+for(int i = 0 ; I < str.lengtgh(); i++){
+
+
+if(str.charAt(i) === '(' || str.charAt(i) === '{' || str.charAt(i) === '['){
+
+    if(st.peek()){
+
+}
+}
+else if(str.charAt(i) === ')' || str.charAt(i) === '}' || str.charAt(i) === ']'){
+
+closings++;
+
+}
+
+}
+
+if( OpeningBr == closings)return true;
+else false; 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+

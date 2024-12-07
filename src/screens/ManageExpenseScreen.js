@@ -5,6 +5,7 @@ import DynamicIcon from '../components/DynamicIcon';
 import {GlobalStateContext} from '../store/context/context';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 import {storeExpense, updateData, deleteData} from '../utils/http';
+import Home from '../components/Home';
 function ManageExpense({route, navigation}) {
   const expenseCtx = useContext(GlobalStateContext);
   const expenseItemId = route.params?.EditedexpenseId;
@@ -20,7 +21,8 @@ function ManageExpense({route, navigation}) {
   }, [navigation, isEdited]);
 
   async function deleteExpense() {
-    await deleteData(expenseItemId);
+    const deletdata = await deleteData(expenseItemId);
+    // console.log('deletdata', JSON.stringify(deletdata));
     expenseCtx.deleteExpense(expenseItemId);
     navigation.goBack();
   }
@@ -31,8 +33,8 @@ function ManageExpense({route, navigation}) {
   async function confirmHandler(expensedata) {
     if (isEdited) {
       expenseCtx.editExpense(expenseItemId, expensedata);
-    await updateData(expenseItemId, expensedata);
-    // console.log("res", res)
+      await updateData(expenseItemId, expensedata);
+      // console.log("res", res)
     } else {
       const id = await storeExpense(expensedata);
       expenseCtx.addExpenses({...expensedata, id});
@@ -58,6 +60,8 @@ function ManageExpense({route, navigation}) {
           />
         </View>
       )}
+
+      <Home />
     </View>
   );
 }

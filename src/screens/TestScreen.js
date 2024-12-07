@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import {
   View,
   FlatList,
@@ -233,26 +233,19 @@ function TestScreen({route}) {
     },
   ];
 
-const [inputData, setInputData] = useState({});
-const submitFormData = [];
+  const [inputData, setInputData] = useState({});
+  const submitFormData = [];
 
-const handleInputChange = (fieldname,enteredValue)=>{
+  const handleInputChange = (fieldname, enteredValue) => {
+    setInputData(prevValue => ({
+      ...prevValue,
+      [fieldname]: enteredValue,
+    }));
+  };
 
-    setInputData((prevValue)=>(
-        {
-            ...prevValue,
-            [fieldname] : enteredValue
-
-        }
-  
-    
-    ));
-
-}
-
-const onSubmit =()=>{
-console.log("formdate", inputData);
-}
+  const onSubmit = () => {
+    console.log('formdate', inputData);
+  };
 
   const users = Object.values(route.params);
   console.log('users', users);
@@ -272,29 +265,24 @@ console.log("formdate", inputData);
           <TextInput
             placeholder="atach-image"
             style={styles.inputBox}
-            onChangeText={(value) => handleInputChange(item.name, value)}
-            value={inputData[item.name] || ''}
-            ></TextInput>
+            onChangeText={value => handleInputChange(item.name, value)}
+            value={inputData[item.name] || ''}></TextInput>
         );
       case 'Data':
         return (
           <TextInput
             placeholder="enter your name"
             style={styles.inputBox}
-            onChangeText={(value) => handleInputChange(item.name, value)}
-            value={inputData[item.name] || ''}
-
-            ></TextInput>
+            onChangeText={value => handleInputChange(item.name, value)}
+            value={inputData[item.name] || ''}></TextInput>
         );
       case 'Date':
         return (
           <TextInput
             placeholder="enter date"
             style={styles.inputBox}
-            onChangeText={(value) => handleInputChange(item.name, value)}
-            value={inputData[item.name] || ''}
-
-            ></TextInput>
+            onChangeText={value => handleInputChange(item.name, value)}
+            value={inputData[item.name] || ''}></TextInput>
         );
 
       default:
@@ -345,5 +333,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-

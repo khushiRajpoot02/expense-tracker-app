@@ -1,6 +1,5 @@
 import {createContext, useReducer, useContext} from 'react';
 
-
 export const GlobalStateContext = createContext({
   expenses: [],
   addExpenses: ({description, amount, date}) => {},
@@ -9,21 +8,18 @@ export const GlobalStateContext = createContext({
   editExpense: (id, {description, amount, date}) => {},
 });
 
-
 // it will return the updated state
 const globalStateReducer = (state, action) => {
   switch (action.type) {
     case 'ADD':
       // const id = new Date().toString() + Math.random().toString();
-      return [ action.payload, ...state];
+      return [action.payload, ...state];
     case 'SET':
       const revert = action.payload.reverse();
       return revert;
     case 'DELETE':
-      console.log('delete', action.payload.expenseItemId);
-      return state.filter(
-        expense => expense.id !== action.payload.expenseItemId,
-      );
+      console.log('deleteknklnlnlnl', action.payload);
+      return state.filter(expense => expense.id !== action.payload);
 
     case 'EDIT':
       console.log('action.payload.expenseItemId', action.payload.id);
@@ -88,7 +84,6 @@ export const GlobalStateProvider = ({children}) => {
     </GlobalStateContext.Provider>
   );
 };
-
 
 // frame mail for react.js and react native experinece
 // use AI extension to cold email and ask for refral from today itself

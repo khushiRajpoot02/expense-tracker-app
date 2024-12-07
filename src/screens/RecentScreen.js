@@ -4,12 +4,16 @@ import {GlobalStateContext} from '../store/context/context';
 import {useContext, useEffect} from 'react';
 import {getDateMinusDays} from '../utils/data';
 import {fetchExpense} from '../utils/http';
+
+import {useAuth} from '../store/context/AuthContext';
 function RecentExpense() {
+  const {loggedInUser} = useAuth();
+
   const expenseCtx = useContext(GlobalStateContext);
   useEffect(() => {
     async function getExpense() {
-      const expense = await fetchExpense();
-      console.log("expense", expense);
+      const expense = await fetchExpense(loggedInUser.uid);
+      console.log('expense', expense);
       expenseCtx.setExpense(expense);
     }
     getExpense();
@@ -27,5 +31,3 @@ function RecentExpense() {
   );
 }
 export default RecentExpense;
-
-

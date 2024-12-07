@@ -2,8 +2,11 @@ import {View, Text, StyleSheet, Alert} from 'react-native';
 import Input from './Input';
 import {useState} from 'react';
 import Buttons from '../Butotns';
+import {useAuth} from '../../store/context/AuthContext';
 
 function ExpenseForm({onCancel, expenseItemId, onsubmit, defaultvalue}) {
+  const {loggedInUser} = useAuth();
+
   const isEdited = !!expenseItemId; // true or false
   // console.log("defaultValue in Expense Form", defaultvalue.forEach((item)=>console.log(item)));
   const [inputValues, setInputValues] = useState({
@@ -23,15 +26,18 @@ function ExpenseForm({onCancel, expenseItemId, onsubmit, defaultvalue}) {
   }
 
   function submitHandler() {
+    // console.log("loggedInUser in expenxse form", loggedInUser);
+
     expensedata = {
       description: inputValues.description,
       amount: +inputValues.amount,
       date: new Date(inputValues.date),
+      userId: loggedInUser.uid,
     };
     const isValidAmount = !isNaN(expensedata.amount) && expensedata.amount > 0;
     const isValiddate = expensedata.date.toString() !== 'Invalid Date';
     const isValidDescription = expensedata.description.trim().length > 0;
-    console.log('isValidDescription', expensedata.description);
+    // console.log('isValidDescription', expensedata.description);
     if (!isValidAmount || !isValiddate || !isValidDescription) {
       Alert.alert('Invalid Input', 'Please check your input value');
       return;

@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -17,51 +17,19 @@ import ManageExpense from './src/screens/ManageExpenseScreen';
 import {GlobalStyles} from './src/constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {GlobalStateProvider} from './src/store/context/context';
-import TestScreen from './src/screens/TestScreen';
-
+import {AuthProvider, useAuth} from './src/store/context/AuthContext';
+import GuestStack from './src/screens/GuestStack';
+import LoginScreen from './src/screens/LoginScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Home from './src/components/Home';
 function App(): React.JSX.Element {
+  const loggedInUser = useAuth();
+  const [showMainScreen, setShowMainScreen] = useState(false);
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
-
-  const users = [
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    {name: 'John Doe', age: 28, email: 'john@example.com'},
-    {name: 'Jane Smith', age: 24, email: 'jane@example.com'},
-    
-  ];
 
   function ExpenseOverView() {
     // @ts-ignore
@@ -122,54 +90,97 @@ function App(): React.JSX.Element {
       </Tab.Navigator>
     );
   }
+
+  function AuthStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{headerShown: true}}
+        />
+      </Stack.Navigator>
+    );
+  }
+
+  const getData = async key => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      console.log('valuee', value);
+      if (value !== null) {
+        // if(value === loggedInUser)
+        setShowMainScreen(true);
+        console.log('Data retrieved successfully:', value);
+      }
+      return value;
+    } catch (error) {
+      console.error('Error retrieving data', error);
+    }
+  };
+
+  // Usage
+  getData('userId');
+
+  function AppNavigator() {
+    const {loggedInUser} = useAuth();
+    console.log('loggedInUser', loggedInUser);
+    return (
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        {showMainScreen ? (
+          <Stack.Screen name="ExpenseOverView" component={ExpenseOverView} />
+        ) : (
+          <Stack.Screen name="AuthStack" component={AuthStack} />
+        )}
+      </Stack.Navigator>
+    );
+  }
+
   return (
     <GlobalStateProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
-            headerTintColor: 'white',
-            headerTitleAlign: 'center',
-          }}
-          // initialRouteName="TestScreen"
-          
-          >
-          <Stack.Screen
-            name="ExpenseOverView"
-            component={ExpenseOverView}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="ManageExpense"
-            component={ManageExpense}
-            options={{
-              presentation: 'modal',
+      <AuthProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
+              headerTintColor: 'white',
+              headerTitleAlign: 'center',
             }}
-          />
-{/* 
-          <Stack.Screen name="TestScreen" component={TestScreen}
-          
-          initialParams={users}
-          /> */}
-        </Stack.Navigator>
-      </NavigationContainer>
+            // initialRouteName="TestScreen"
+          >
+            <Stack.Screen
+              name="AppNavigator"
+              component={AppNavigator}
+              options={{headerShown: false}}
+            />
+
+            <Stack.Screen
+              name="ExpenseOverView"
+              component={ExpenseOverView}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ManageExpense"
+              component={ManageExpense}
+              options={{
+                presentation: 'modal',
+              }}
+            />
+            {/* <Stack.Screen name="Home" component={Home} /> */}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AuthProvider>
     </GlobalStateProvider>
   );
 }
 
 export default App;
-
-// practice coding questions in react-native so that if they tell me to do any program, I should be able to do this(Mainly focus on js part for coding using
-// let's practice these also
-
-// map, reducer, filter, indexOf, FlstList
-// redux
-// Navigation
-// Hooks (useState, useMemo, Dynamic form, useeffect and so on)
-// I have 3 days left
-// make everyday worthit so that I will not be having regrets
-// Jai mata Di
-// let's work on thissssss
-
-// itnaa sara aaj kr leti hu to accha khasa practice ho jayegii
-// ok? yes let's learn and work for this
